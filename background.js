@@ -5,10 +5,10 @@ chrome.commands.onCommand.addListener(function(command) {
             chrome.storage.sync.get("customDomain", function(data) {
                 let customDomain = data.customDomain || "yewtu.be";
                 if (currentUrl.includes("youtube.com/watch")) {
-                    let newUrl = currentUrl.replace("youtube.com", customDomain);
+                    let newUrl = currentUrl.replace("www.youtube.com", customDomain);
                     chrome.tabs.update(tabs[0].id, {url: newUrl});
                 } else if (currentUrl.includes(customDomain + "/watch")) {
-                    let newUrl = currentUrl.replace(customDomain, "youtube.com");
+                    let newUrl = currentUrl.replace(customDomain, "www.youtube.com");
                     chrome.tabs.update(tabs[0].id, {url: newUrl});
                 }
             });
