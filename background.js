@@ -4,11 +4,15 @@ chrome.commands.onCommand.addListener(function(command) {
             let currentUrl = tabs[0].url;
             chrome.storage.sync.get("customDomain", function(data) {
                 let customDomain = data.customDomain || "yewtu.be";
+                scheme = "";
+                if (!customDomain.startsWith("http")){
+                    scheme = "http://";
+                }
                 if (currentUrl.includes("youtube.com/watch")) {
-                    let newUrl = currentUrl.replace("youtube.com", customDomain);
+                    let newUrl = scheme + customDomain + "/watch" + currentUrl.split("/watch")[1]
                     chrome.tabs.update(tabs[0].id, {url: newUrl});
                 } else if (currentUrl.includes(customDomain + "/watch")) {
-                    let newUrl = currentUrl.replace(customDomain, "youtube.com");
+                    let newUrl = "https://www.youtube.com/watch" + currentUrl.split("/watch")[1]
                     chrome.tabs.update(tabs[0].id, {url: newUrl});
                 }
             });
