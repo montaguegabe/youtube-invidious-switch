@@ -6,7 +6,7 @@ chrome.commands.onCommand.addListener(function(command) {
                 let customDomain = data.customDomain || "yewtu.be";
                 scheme = "";
                 if (!customDomain.startsWith("http")){
-                    scheme = "http://";
+                    scheme = "https://";
                 }
                 if (currentUrl.includes("youtube.com/watch")) {
                     let newUrl = scheme + customDomain + "/watch" + currentUrl.split("/watch")[1]
